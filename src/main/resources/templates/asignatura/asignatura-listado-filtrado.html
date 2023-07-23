@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Asignaturas</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+	</link>
+</head>
+
+<body>
+	<h1>Listado de asignaturas filtradas por tipo</h1>
+
+	<!-- Filtro por tipo de asignatura -->
+	<form action="/asignatura/listado/conaltasybajas/{tipo}" method="get">
+		<label for="tipoFiltro">Filtrar por tipo:</label>
+		<select id="tipoFiltro" name="tipo">
+			<option value="">Todos</option>
+			<option value="CIENCIAS" th:selected="${tipoFiltro == 'CIENCIAS'}">Ciencias</option>
+			<option value="LETRAS" th:selected="${tipoFiltro == 'LETRAS'}">Letras</option>
+			<option value="MIXTO" th:selected="${tipoFiltro == 'MIXTO'}">Mixto</option>
+			<option value="SOCIALES" th:selected="${tipoFiltro == 'SOCIALES'}">Sociales</option>
+			<option value="ARTISTICO" th:selected="${tipoFiltro == 'ARTISTICO'}">Artístico</option>
+		</select>
+		<input type="submit" value="Filtrar">
+	</form>
+	<br>
+	<br>
+	<button><a href="/asignatura/listado/sin">Alumnos sin matricular</a></button>
+	<button><a href="/asignatura/listado/con">Alumnos matriculados</a></button>
+	<button><a href="/asignatura/listado/conaltasybajas">Matricular o quitar a los alumnos</a></button>
+	<button><a href="/home">Volver al inicio</a></button>
+	<br>
+	<br>
+	<br>
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>Nombre</th>
+			<th>Descripción</th>
+			<th>Tipo</th>
+			<th>Número de Créditos</th>
+			<th>Número de Alumnos Matriculados</th>
+		</tr>
+		<!-- Iterar sobre las asignaturas -->
+		<tr th:each="asignatura : ${asignaturas}">
+			<td th:text="${asignatura.id}"></td>
+			<td th:text="${asignatura.nombre}"></td>
+			<td th:text="${asignatura.descripcion}"></td>
+			<td th:text="${asignatura.tipo}"></td>
+			<td th:text="${asignatura.numeroCreditos}"></td>
+			<td th:text="${asignatura.numeroAlumnosMatriculados}"></td>
+		</tr>
+	</table>
+
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Asignaturas</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+	</link>
+</head>
+
+<body>
+	<h1>Listado de todas las asignaturas</h1>
+
+	<button><a href="/asignatura/listado/conaltasybajas/{tipo}">Ir a filtrar</a></button>
+	<button><a href="/home">Volver al inicio</a></button>
+	<br>
+	<br>
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>Nombre</th>
+			<th>Descripción</th>
+			<th>Tipo</th>
+			<th>Número de Créditos</th>
+			<th>Número de Alumnos Matriculados</th>
+			<th>Número de Alumnos Matriculados + 1</th>
+			<th>Número de Alumnos Matriculados - 1</th>
+		</tr>
+		<!-- Iterar sobre las asignaturas -->
+		<tr th:each="asignatura : ${asignaturas}">
+			<td th:text="${asignatura.id}"></td>
+			<td th:text="${asignatura.nombre}"></td>
+			<td th:text="${asignatura.descripcion}"></td>
+			<td th:text="${asignatura.tipo}"></td>
+			<td th:text="${asignatura.numeroCreditos}"></td>
+			<td th:text="${asignatura.numeroAlumnosMatriculados}"></td>
+			<!-- Incrementar alumnos -->
+			<td><a th:href="@{/alta/} + ${asignatura.id}">Alta</a></td>
+			<!-- Decrementar alumnos -->
+			<td><a th:href="@{/baja/} + ${asignatura.id}">Baja</a></td>
+		</tr>
+	</table>
+
+</body>
+
+</html>

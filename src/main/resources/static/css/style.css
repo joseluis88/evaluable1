@@ -1,0 +1,17 @@
+@charset "UTF-8";
+h1{
+	color: green;
+}
+p{
+	color:gray;
+}
+img {
+	max-height:55px;
+	
+}
+
+table, th, td{
+	border-collapse: collapse;
+	border: 1px solid black;
+	text-align: center;
+}
